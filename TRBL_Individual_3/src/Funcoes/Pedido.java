@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Pedido {
-    final private UUID IDPEDIDO;
-    final private Cliente CLIENTE;
+    final private UUID idPedido;
+    final private Cliente cliente;
     private List<ItemPedido> itens = new ArrayList<>();
 
-    public Pedido(UUID idPedido, Cliente idCliente) {
-        this.IDPEDIDO = idPedido;
-        this.CLIENTE = idCliente;
+    public Pedido(Cliente cliente) {
+        this.idPedido = UUID.randomUUID();
+        this.cliente = cliente;
     }
 
     public void adicionarItem(Item produto, Integer qtd){
@@ -18,12 +18,12 @@ public class Pedido {
         this.itens.add(novoItem);
     }
 
-    public Cliente getCLIENTE() {
-        return this.CLIENTE;
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
     public UUID getIdPedido() {
-        return this.IDPEDIDO;
+        return this.idPedido;
     }
 
     public List<ItemPedido> getItens() {

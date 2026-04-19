@@ -4,22 +4,24 @@ import java.util.UUID;
 
 public class Cliente {
 
-    final private UUID IDCLIENTE;
+    final private UUID idCliente;
     private String nome;
-    final private Date DATANASC;
+    final private Date datanasc;
+    final private String CPF;
 
-    public Cliente(UUID idCliente, String nome, Date datanasc) {
-        this.IDCLIENTE = idCliente;
+    public Cliente(String nome, Date datanasc, String cpf) {
+        this.idCliente = UUID.randomUUID();
         this.nome = nome;
-        this.DATANASC = datanasc;
+        this.datanasc = datanasc;
+        this.CPF = cpf;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public UUID getIDCLIENTE() {
-        return this.IDCLIENTE;
+    public UUID getIdCliente() {
+        return this.idCliente;
     }
 
     public String getNome() {
@@ -27,7 +29,7 @@ public class Cliente {
     }
 
     public Date getDatanasc() {
-        return this.DATANASC;
+        return this.datanasc;
     }
 }
 
