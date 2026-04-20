@@ -31,12 +31,16 @@ public class TRBL_4 {
             System.out.println("\nErro Inesperado!");
             return;
         }
-        // ----- ----- EXECUÇÃO DA ESCOLHA ----- -----
+
+        // ----- ----- EXECUÇÃO DA INTERFACE ----- -----
 
         Integer opc = 0;
 
         do{
             try {
+
+                // ----- ----- IMPRESSÃO DO CATÁLOGO ----- -----
+
                 Integer catalogo = 1;
 
                 for (int i = 0; i < carros.size(); i++) {
@@ -59,6 +63,9 @@ public class TRBL_4 {
                     catalogo++;
                 }
 
+                // ----- ----- ENTRADA DO USUARIO ----- -----
+
+
                 System.out.print("\n\nSelecione qual Veiculo deseja Alugar! (Digite 0 para encerrar o programa): ");
                 opc = sc.nextInt();
 
@@ -72,10 +79,13 @@ public class TRBL_4 {
                     throw new IndexOutOfBoundsException();
                 }
 
-                // ----- ----- EXECUÇÃO DA COMPRA ----- -----
-
                 System.out.print("Digite a quantidade de dias que deseja alugar: ");
                 Integer dias = sc.nextInt();
+
+                // ----- ----- EXECUÇÃO DA COMPRA ----- -----
+                //Calculos que utilizam opc-1 é para ajuste de indice.
+
+                // ----- ----- CAMINHAO ----- -----
 
                 if (opc > carros.size()){
                     Caminhao caminhaoAlugado = caminhoes.get(opc-1-carros.size());
@@ -92,6 +102,8 @@ public class TRBL_4 {
 
                     break;
 
+                    // ----- ----- CARRO DE PASSEIO ----- -----
+
                 } else{
                     CarroPasseio CarroAlugado = carros.get(opc-1);
 
@@ -100,9 +112,12 @@ public class TRBL_4 {
                     System.out.println("----- NOTA FISCAL -----");
                     System.out.printf("Veiculo: %s\nMarca: %s     Ano: %d     Placa: %s\nValor final do aluguel: %.2f\nIPVA: %.2f",
                             CarroAlugado.getModelo(), CarroAlugado.getMarca(), CarroAlugado.getAnoFabricacao(),
-                            CarroAlugado.getPlaca(), CarroAlugado.AlugarVeiculo(0.00 , dias), CarroAlugado.CalcularIPVA());
+                            CarroAlugado.getPlaca(), CarroAlugado.AlugarVeiculo(0.00, dias), CarroAlugado.CalcularIPVA());
                     break;
                 }
+
+                // ----- ----- TRATAMENTO DE ERROS ----- -----
+
 
             } catch (InputMismatchException e) {
                 sc.nextLine();
