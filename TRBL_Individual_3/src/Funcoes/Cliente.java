@@ -31,6 +31,10 @@ public class Cliente {
     public Date getDatanasc() {
         return this.datanasc;
     }
+
+    public String getCPF() {
+        return CPF;
+    }
 }
 
 

@@ -11,17 +11,12 @@ public class ItemPedido {
         this.qtd = qtd;
     }
 
-    public Item getPRODUTO() {
+    public Item getProduto() {
         return this.produto;
     }
 
     public Integer getQuantidade() {
         return this.qtd;
     }
-
-    public void setQuantidade(Integer quantidade) {
-        this.qtd = quantidade;
-    }
-
 }
 

@@ -9,7 +9,7 @@ import java.util.*;
 
 public class TRBL_3 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
         SimpleDateFormat dataBrasil = new SimpleDateFormat("dd/MM/yyyy");
         Scanner sc = new Scanner(System.in);
@@ -17,10 +17,10 @@ public class TRBL_3 {
         Cliente cliente;
         List<Item> estoqueDaLoja = new ArrayList<>();
 
-        estoqueDaLoja.add(new Item("Kit de dados", 21.90, 50));
-        estoqueDaLoja.add(new Item("Carta GITCG", 16.90, 80));
-        estoqueDaLoja.add(new Item("Mesinha de Madeira (pequena)", 129.90, 21));
-        estoqueDaLoja.add(new Item("Algum Item muito muito caro :(", 1597.90, 2));
+        estoqueDaLoja.add(new Item("Kit de Dados Azuis", 21.90, 50));
+        estoqueDaLoja.add(new Item("Carta Premium GITCG", 16.90, 80));
+        estoqueDaLoja.add(new Item("Mesinha de Madeira", 129.90, 21));
+        estoqueDaLoja.add(new Item("Super Mesa 4000", 1597.90, 2));
 
         System.out.println("Iniciando cadastro!");
         while(true){
@@ -58,39 +58,55 @@ public class TRBL_3 {
                     for (int i = 0; i < estoqueDaLoja.size(); i++) {
                         produto = estoqueDaLoja.get(i);
 
-                        System.out.printf("\n\nItem %d\n%s\nValor: %.2f\nEstoque: %d\n\n", i + 1, produto.getNomeItem(), produto.getPreco(), produto.getEstoque());
+                        System.out.printf("\n\nItem %d\n%s\nValor: %.2f\nEstoque: %d", i + 1, produto.getNomeItem(), produto.getPreco(), produto.getEstoque());
                     }
 
-                    System.out.println("Selecione qual item deseja comprar! (Digite 0 para encerrar as compras): ");
+                    System.out.print("\n\nSelecione qual item deseja comprar! (Digite 0 para encerrar as compras): ");
                     opc = sc.nextInt() - 1;
 
-                    if (opc == -1) {
+                    if (opc <= -1) {
                         break;
                     }
 
                     produto = estoqueDaLoja.get(opc);
                     if (produto.getEstoque() == 0) {
-                        System.out.print("Impossível comprar!\nProduto sem estoque!");
+                        System.out.println("Impossível comprar!\nProduto sem estoque!");
+                        Thread.sleep(1000);
+                        continue;
                     }
 
-                    System.out.printf("Item selecionado: %s\nDigite a quantidade que deseja comprar (Digite 0 para cancelar a compra): ", produto.getNomeItem());
+                    System.out.printf("\nItem selecionado: %s\nDigite a quantidade que deseja comprar (Digite 0 para cancelar a compra): ", produto.getNomeItem());
                     opc = sc.nextInt();
 
-                    if (opc == 0) {
-                        System.out.print("Cancelando compra!");
+                    if (opc <= 0) {
+                        System.out.println("\nCancelando compra!");
+                        Thread.sleep(1000);
                         continue;
                     } else if (opc > produto.getEstoque()) {
-                        System.out.print("Impossível efetuar a compra!\nQuantidade de compra superior à quantida dísponivel!");
+                        System.out.println("\nImpossível efetuar a compra!\nQuantidade de compra superior à quantida dísponivel!");
+                        Thread.sleep(1000);
+                        continue;
                     } else {
                         pedido.adicionarItem(produto, opc);
                         produto.setEstoque(produto.getEstoque() - opc);
                     }
+                } catch (InputMismatchException e) {
+                    sc.nextLine();
+                    System.out.println("\nO valor digitado deve ser um número!");
+                    Thread.sleep(1000);
+                } catch (IndexOutOfBoundsException e) {
+                    sc.nextLine();
+                    System.out.println("\nNúmero do Produto escolhi inválido! Verifique novamente\n");
+                    Thread.sleep(1000);
+
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    System.out.println("\nOcorreu um erro Inesperado!\n");
+                    sc.close();
+                    return;
                 }
             } while(true);
 
-
-
+            sc.close();
+            pedido.fecharpedido();
     }
 }
