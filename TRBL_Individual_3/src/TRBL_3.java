@@ -17,10 +17,15 @@ public class TRBL_3 {
         Cliente cliente;
         List<Item> estoqueDaLoja = new ArrayList<>();
 
+        // ----- ----- INSERÇÃO DE VALORES DE EXEMPLOS BASE ----- -----
+
         estoqueDaLoja.add(new Item("Kit de Dados Azuis", 21.90, 50));
         estoqueDaLoja.add(new Item("Carta Premium GITCG", 16.90, 80));
         estoqueDaLoja.add(new Item("Mesinha de Madeira", 129.90, 21));
         estoqueDaLoja.add(new Item("Super Mesa 4000", 1597.90, 2));
+
+        // ----- ----- CRIAÇÃO DO CLIENTE USUÁRIO ----- -----
+        //verificações dos valores digitados não foi analisada pois aumentaria a complexidade (maior do que já está))
 
         System.out.println("Iniciando cadastro!");
         while(true){
@@ -46,12 +51,16 @@ public class TRBL_3 {
             }
         }
 
+        // ----- ----- INTERFACE ----- -----
+
         Pedido pedido = new Pedido(cliente);
 
             do{
                 try {
                     Integer opc;
                     Item produto;
+
+                    // ----- ----- MENSAGEM INICIAL E PRINT DO CATÁLOGO ----- -----
 
                     System.out.printf("Olá %s!", cliente.getNome());
 
@@ -61,8 +70,13 @@ public class TRBL_3 {
                         System.out.printf("\n\nItem %d\n%s\nValor: %.2f\nEstoque: %d", i + 1, produto.getNomeItem(), produto.getPreco(), produto.getEstoque());
                     }
 
+                    // ----- ----- CAPTURA DE ENTRADA DO USUÁRIO ----- -----
+
+
                     System.out.print("\n\nSelecione qual item deseja comprar! (Digite 0 para encerrar as compras): ");
                     opc = sc.nextInt() - 1;
+
+                    // ----- ----- VERIFICAÇÃO DE EXECUÇÕES VÁLIDAS E VERIFICAÇÃO DE CONDIÇÃO DE SAÍDA ----- -----
 
                     if (opc <= -1) {
                         break;  // sair do while
@@ -74,6 +88,8 @@ public class TRBL_3 {
                         Thread.sleep(1000);
                         continue;
                     }
+
+                    // ----- ----- ANALISE DE CONDIÇÃO DE CANCELAMENTO, ANALISE DE QUANTIDADE VÁLIDA OU EXECUÇÃO DA COMPRA ----- -----
 
                     System.out.printf("\nItem selecionado: %s\nDigite a quantidade que deseja comprar (Digite 0 para cancelar a compra): ", produto.getNomeItem());
                     opc = sc.nextInt();
@@ -90,6 +106,9 @@ public class TRBL_3 {
                         pedido.adicionarItem(produto, opc);
                         produto.setEstoque(produto.getEstoque() - opc);
                     }
+
+                    // ----- ----- TRATAMENTO DE ERROS E REENVIO PARA O WHILE OU ENCERRAMENTO DO CÓDIGO ----- -----
+
                 } catch (InputMismatchException e) {
                     sc.nextLine();
                     System.out.println("\nO valor digitado deve ser um número!");
@@ -106,7 +125,9 @@ public class TRBL_3 {
                 }
             } while(true);
 
-            sc.close();
-            pedido.fecharpedido();
+        // ----- ----- FECHAMENTO DO SCANNER E CHAMADA DA FUNÇÃO DA NOTA FISCAL ----- -----
+
+        sc.close();
+        pedido.fecharpedido();
     }
 }
