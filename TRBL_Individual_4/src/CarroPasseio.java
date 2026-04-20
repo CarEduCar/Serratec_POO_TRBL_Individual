@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public final class CarroPasseio extends Veiculo{
 
-    public CarroPasseio(String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe) {
-        super(placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
+    public CarroPasseio(String modelo, String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe) {
+        super(modelo, placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
     }
 
     @Override

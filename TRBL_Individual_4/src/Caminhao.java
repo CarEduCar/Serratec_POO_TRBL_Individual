@@ -4,8 +4,8 @@ public final class Caminhao extends Veiculo{
 
     final private Double capacidadeCargaToneladas;
 
-    public Caminhao(String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe, Double carga) {
-        super(placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
+    public Caminhao(String modelo, String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe, Double carga) {
+        super(modelo, placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
         this.capacidadeCargaToneladas = carga;
     }
 
