@@ -1,12 +1,12 @@
 import java.util.Date;
 
-public abstract sealed class Veiculo implements Fretavel, Tributavel permits Caminhao {
+public abstract sealed class Veiculo implements Fretavel, Tributavel permits Caminhao, CarroPasseio {
 
     final protected String placa;
     final protected String marca;
     protected Double valorLocacaoDiaria;
     final protected Integer anoFabricacao;
-    Double precoFipe;
+    protected Double precoFipe;
 
     public Veiculo(String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe) {
         this.placa = placa;
@@ -16,4 +16,31 @@ public abstract sealed class Veiculo implements Fretavel, Tributavel permits Cam
         this.precoFipe = precoFipe;
     }
 
+    public String getPlaca() {
+        return this.placa;
+    }
+
+    public String getMarca() {
+        return this.marca;
+    }
+
+    public Double getValorLocacaoDiaria() {
+        return this.valorLocacaoDiaria;
+    }
+
+    public Integer getAnoFabricacao() {
+        return this.anoFabricacao;
+    }
+
+    public Double getPrecoFipe() {
+        return this.precoFipe;
+    }
+
+    public void setValorLocacaoDiaria(Double valorLocacaoDiaria) {
+        this.valorLocacaoDiaria = valorLocacaoDiaria;
+    }
+
+    public void setPrecoFipe(Double precoFipe) {
+        this.precoFipe = precoFipe;
+    }
 }

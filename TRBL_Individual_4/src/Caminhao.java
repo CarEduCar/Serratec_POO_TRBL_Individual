@@ -2,11 +2,15 @@ import java.time.LocalDate;
 
 public final class Caminhao extends Veiculo{
 
-    private Double capacidadeCargaToneladas;
+    final private Double capacidadeCargaToneladas;
 
     public Caminhao(String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe, Double carga) {
         super(placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
         this.capacidadeCargaToneladas = carga;
+    }
+
+    public Double getCapacidadeCargaToneladas() {
+        return capacidadeCargaToneladas;
     }
 
     @Override
