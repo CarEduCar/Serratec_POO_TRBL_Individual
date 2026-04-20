@@ -65,7 +65,7 @@ public class TRBL_3 {
                     opc = sc.nextInt() - 1;
 
                     if (opc <= -1) {
-                        break;
+                        break;  // sair do while
                     }
 
                     produto = estoqueDaLoja.get(opc);

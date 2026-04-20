@@ -1,0 +1,32 @@
+import java.time.LocalDate;
+
+public final class Caminhao extends Veiculo{
+
+    private Double capacidadeCargaToneladas;
+
+    public Caminhao(String placa, String marca, Double valorLocacaoDiaria, Integer anoFabricacao, Double precoFipe, Double carga) {
+        super(placa, marca, valorLocacaoDiaria, anoFabricacao, precoFipe);
+        this.capacidadeCargaToneladas = carga;
+    }
+
+    @Override
+    public Double AlugarVeiculo (Double pesoCarga, Integer dias) {
+        Double custo = dias * this.valorLocacaoDiaria;
+
+        if (pesoCarga > this.capacidadeCargaToneladas) {
+            custo += custo * 0.1;
+        }
+        return custo;
+    }
+
+    @Override
+    public Double CalcularIPVA(){
+        Integer idadeVeiculo = LocalDate.now().getYear() - this.anoFabricacao;
+
+        if(idadeVeiculo > 20) {
+            return 0.00;
+        }else {
+             return 0.015 * this.precoFipe;
+        }
+    }
+}
